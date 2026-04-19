@@ -80,7 +80,9 @@ const KEY_DATES = [
 export default function Roadmap() {
   const [hovered, setHovered] = useState(null);
   const [tooltip, setTooltip] = useState(null);
-  const [activeTrack, setActiveTrack] = useState(null);
+  type TrackId = "tracker" | "vigil" | "youtube" | "freelance";
+  const [activeTrack, setActiveTrack] = useState<TrackId | null>(null);
+
 
   const CELL = 72;
   const ROW_HEIGHT = 68;
