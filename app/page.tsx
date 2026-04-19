@@ -75,28 +75,23 @@ const KEY_DATES = [
   { week: 4, label: "First $$$ 💰", color: "#00D084" },
   { week: 9, label: "Vigil on npm 📦", color: "#7B61FF" },
   { week: 12, label: "₹1L target 🎯", color: "#F7B731" },
-];
+] as const;
 
-type TrackId = "tracker" | "vigil" | "youtube" | "freelance";
-type Track = {
-  id: TrackId;
-  label: string;
-  emoji: string;
-  color: string;
-  milestones: {
-    week: number;
-    duration: number;
-    phase: string;
-    detail: string;
-  }[];
-};
+// type TrackId = "tracker" | "vigil" | "youtube" | "freelance";
+type TrackId = (typeof TRACKS)[number]["id"];
 
 
 export default function Roadmap() {
-  const [hovered, setHovered] = useState(null);
-  const [tooltip, setTooltip] = useState(null);
-  const TRACKS: Track[] = [ ... ];
-  const [activeTrack, setActiveTrack] = useState<TrackId | null>(null);  
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const [tooltip, setTooltip] = useState<{
+    x: number;
+    y: number;
+    track: (typeof TRACKS)[number];
+    m: (typeof TRACKS)[number]["milestones"][number];
+  } | null>(null);
+
+  const [activeTrack, setActiveTrack] = useState<TrackId | null>(null);
 
 
   const CELL = 72;
