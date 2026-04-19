@@ -77,11 +77,26 @@ const KEY_DATES = [
   { week: 12, label: "₹1L target 🎯", color: "#F7B731" },
 ];
 
+type TrackId = "tracker" | "vigil" | "youtube" | "freelance";
+type Track = {
+  id: TrackId;
+  label: string;
+  emoji: string;
+  color: string;
+  milestones: {
+    week: number;
+    duration: number;
+    phase: string;
+    detail: string;
+  }[];
+};
+
+
 export default function Roadmap() {
   const [hovered, setHovered] = useState(null);
   const [tooltip, setTooltip] = useState(null);
-  type TrackId = "tracker" | "vigil" | "youtube" | "freelance";
-  const [activeTrack, setActiveTrack] = useState<TrackId | null>(null);
+  const TRACKS: Track[] = [ ... ];
+  const [activeTrack, setActiveTrack] = useState<TrackId | null>(null);  
 
 
   const CELL = 72;
